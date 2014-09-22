@@ -11,4 +11,9 @@ public class Player {
 		name = n;
 	}
 
+	public int getRep() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
