@@ -12,6 +12,32 @@ public class Player {
 		this.id = id;
 	}
 
+	public static void erstellen() {
+		boolean newp = true;
+		int id = 0;
+		do {
+			id++;
+			BT.p.add(new Player(id));
+			System.out.println("Geben Sie einen Spielernamen ein: ");
+			Scanner sc = new Scanner(System.in);
+			String n = sc.nextLine();
+			Player.setName(n);
+			Player.setGeld(10000);
+			if (id >= 2) {
+				System.out.println(" Einen weiteren Spieler hinzufügen? y/n");
+				String a = sc.nextLine();
+				sc.close();
+				if (a.contentEquals("y")) {
+					newp = true;
+				} else {
+					newp = false;
+				}
+			} else {
+				newp = true;
+			}
+		} while (newp = true);
+	}
+
 	public static void setName(String n) {
 		name = n;
 	}
@@ -73,5 +99,22 @@ public class Player {
 			rep -= ze.rep;
 		}
 
+	}
+
+	public void quartalsBericht() {
+		if (BT.runde > 1) {
+			/*
+			 * Zum Schluss noch alle wichtigen Daten aus der letzten Runde
+			 * sammeln und hier in der nächsten Runde darstellen
+			 */
+		}
+	}
+
+	public void auftragBeschaffen() {
+		for (int i = 0; i < Kunde.au.size(); i++) {
+			System.out.println(Kunde.au.get(i).name);
+			System.out.println(Kunde.au.get(i).geld);
+			System.out.println();
+		}
 	}
 }

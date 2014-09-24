@@ -3,9 +3,12 @@ import java.util.Vector;
 abstract class Kunde {
 
 	int id;
+	static int auid;
 	String name;
 	int minrep;
 	int minqual;
+
+	static Vector<Auftrag> au = new Vector<Auftrag>();
 
 	static Vector<Kunde> klow = new Vector<Kunde>();
 	static Vector<Kunde> kmid = new Vector<Kunde>();
@@ -34,12 +37,8 @@ abstract class Kunde {
 		}
 	}
 
-	public void erzAuftrag() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public static void auftragErstellen() {
+
 		// Günstig Kunden
 		for (int i = 0; i < klow.size(); i++) {
 			int ran = (int) (Math.random() * 10);
@@ -96,5 +95,7 @@ abstract class Kunde {
 		}
 
 	}
+
+	public abstract void erzAuftrag();
 
 }

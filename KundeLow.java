@@ -1,8 +1,10 @@
 class KundeLow extends Kunde {
 
+	String name;
+
 	public KundeLow(int id, String name, int minrep, int minqual) {
 		super(id, name, minrep, minqual);
-		// TODO Auto-generated constructor stub
+		this.name = name;
 	}
 
 	public void erzAuftrag() {
@@ -14,7 +16,9 @@ class KundeLow extends Kunde {
 		int kap = 20;
 		kap += (int) (Math.random() * 100);
 		int ep = kap;
-		au = new Auftrag(minrep, minqual, kap, geld, ep);
+		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, minqual, kap, geld,
+				ep));
+		Kunde.auid++;
 	}
 
 }

@@ -5,8 +5,11 @@ public class Auftrag {
 	int kap;
 	int geld;
 	int ep;
+	String name;
 
-	public Auftrag(int minrep, int minqual, int kap, int geld, int ep) {
+	public Auftrag(String name, int auid, int minrep, int minqual, int kap,
+			int geld, int ep) {
+		this.name = name;
 		int ran = (int) (Math.random() * 10);
 		double rand = ran / 10.0;
 		if (rand > 0.5) {
