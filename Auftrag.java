@@ -1,14 +1,17 @@
 public class Auftrag {
 
+	int auid;
 	int rep;
 	int qual;
 	int kap;
-	int geld;
+	double geld;
 	int ep;
 	String name;
+	Angebot a;
 
 	public Auftrag(String name, int auid, int minrep, int minqual, int kap,
-			int geld, int ep) {
+			double geld, int ep) {
+		this.auid = auid;
 		this.name = name;
 		int ran = (int) (Math.random() * 10);
 		double rand = ran / 10.0;

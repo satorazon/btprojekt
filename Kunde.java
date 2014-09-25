@@ -3,10 +3,12 @@ import java.util.Vector;
 abstract class Kunde {
 
 	int id;
-	static int auid;
+
 	String name;
 	int minrep;
 	int minqual;
+
+	static int auid;
 
 	static Vector<Auftrag> au = new Vector<Auftrag>();
 

@@ -20,7 +20,7 @@ public class BT {
 			}
 			Kunde.auftragErstellen();
 			for (int j = 0; j < p.size(); j++) { // Phase 2: Auftrag beschaffen
-				p.get(j).auftragBeschaffen();
+				p.get(j).auftragb();
 			}
 			auftragvergabe();
 			materialerstellung();

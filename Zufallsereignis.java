@@ -1,8 +1,8 @@
 public class Zufallsereignis {
 
 	String ereignis;
-	static int geld;
-	int sgeld = 1000;
+	static double geld;
+	double sgeld;
 	int rep;
 
 	public Zufallsereignis(int k, int ran) {
@@ -10,7 +10,7 @@ public class Zufallsereignis {
 			switch (ran) {
 			case 1:
 				ereignis = "Ein Kontrolleur wird sich zum Ende des Quartals eines Ihrer Werke ansehen."
-						+ "Verbessern Sie Ihre Arbeitsbedingungen (1) oder nehmen Sie eine schlechte Bewertung in kauf (2)? "
+						+ "Verbessern Sie Ihre Arbeitsbedingungen für 50.000 (1) oder nehmen Sie eine schlechte Bewertung in kauf -20 Rep(2)? "
 						+ "Sie können auch versuchen die Situation mit einem Schmiergeld abzuwenden.(3)";
 				geld = 50000;
 				rep = 20;
@@ -54,7 +54,7 @@ public class Zufallsereignis {
 		return ereignis;
 	}
 
-	public static int getGeld() {
+	public static double getGeld() {
 		return geld;
 	}
 }
