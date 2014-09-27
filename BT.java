@@ -7,6 +7,7 @@ public class BT {
 
 	static Vector<Player> p = new Vector<Player>();
 	static int runde = 0;
+	static Material materialmarkt = new Material();
 
 	public static void main(String[] args) {
 		Player.erstellen();
@@ -18,38 +19,24 @@ public class BT {
 				p.get(j).quartalsBericht();
 				p.get(j).getZufall();
 			}
-			Kunde.auftragErstellen();
+			Kunde.auftraegeErstellen();
 			for (int j = 0; j < p.size(); j++) { // Phase 2: Auftrag beschaffen
 				p.get(j).auftragb();
 			}
-			auftragvergabe();
-			materialerstellung();
+			materialmarkt.erstellen();
 			for (int j = 0; j < p.size(); j++) { // Phase 3: Material beschaffen
-				auftraginfo(p.get(j));
-				materialbeschaffung(p.get(j));
+				p.get(j).auftragInfo();
+				p.get(j).materialBeschaffen();
 			}
-			materialvergabe();
 			for (int j = 0; j < p.size(); j++) { // Phase 4: Investitionen
-				materialinfo(p.get(j));
 				gebaeude(p.get(j));
 				mitarbeiter(p.get(j));
 				maschinen(p.get(j));
 			}
-			gebmitinfo();
 		}
 	}
 
 	private static void maschinen(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void gebmitinfo() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void materialerstellung() {
 		// TODO Auto-generated method stub
 
 	}
@@ -63,34 +50,5 @@ public class BT {
 		// TODO Auto-generated method stub
 
 	}
-
-	private static void materialinfo(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void materialvergabe() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void auftragvergabe() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void auftraginfo(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void materialbeschaffung(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	// reihenfolge losen, bericht, zufallsereignis
-	// interaktiv kampf auftrag rohstoff
-	// investieren geb mit
 
 }

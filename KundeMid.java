@@ -12,9 +12,11 @@ class KundeMid extends Kunde {
 		geld += ran + 1000;
 		int kap = 20;
 		kap += (int) (Math.random() * 100);
+		int mat = kap / 2;
+		int matsorte = 2;
 		int ep = kap + 25;
-		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, minqual, kap, geld,
-				ep));
+		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, minqual, kap, mat,
+				matsorte, geld, ep));
 		Kunde.auid++;
 	}
 

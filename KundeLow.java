@@ -1,7 +1,5 @@
 class KundeLow extends Kunde {
 
-	String name;
-
 	public KundeLow(int id, String name, int minrep, int minqual) {
 		super(id, name, minrep, minqual);
 		this.name = name;
@@ -14,9 +12,11 @@ class KundeLow extends Kunde {
 		geld += ran + 1000;
 		int kap = 20;
 		kap += (int) (Math.random() * 100);
+		int mat = kap / 2;
+		int matsorte = 1;
 		int ep = kap;
-		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, minqual, kap, geld,
-				ep));
+		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, minqual, kap, mat,
+				matsorte, geld, ep));
 		Kunde.auid++;
 	}
 

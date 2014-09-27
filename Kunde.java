@@ -39,7 +39,7 @@ abstract class Kunde {
 		}
 	}
 
-	public static void auftragErstellen() {
+	public static void auftraegeErstellen() {
 
 		// Günstig Kunden
 		for (int i = 0; i < klow.size(); i++) {
@@ -99,5 +99,16 @@ abstract class Kunde {
 	}
 
 	public abstract void erzAuftrag();
+
+	public static void auftragsBestätigung() {
+		for (int i = 0; i < au.size(); i++) {
+			for (int j = 0; j < BT.p.size(); j++) {
+				if (BT.p.get(j).name.contentEquals(au.get(i).a.name)) {
+					Player.todo.add(au.get(i));
+				}
+			}
+		}
+
+	}
 
 }
