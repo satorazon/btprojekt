@@ -1,7 +1,7 @@
 public class Zufallsereignis {
 
 	String ereignis;
-	static double geld;
+	double geld;
 	double sgeld;
 	int rep;
 
@@ -47,14 +47,5 @@ public class Zufallsereignis {
 				break;
 			}
 		}
-	}
-
-	public String getEreignis() {
-		// TODO Auto-generated method stub
-		return ereignis;
-	}
-
-	public static double getGeld() {
-		return geld;
 	}
 }

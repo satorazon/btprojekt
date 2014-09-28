@@ -1,6 +1,4 @@
 import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
 import java.util.Vector;
 
 public class BT {
@@ -8,6 +6,7 @@ public class BT {
 	static Vector<Player> p = new Vector<Player>();
 	static int runde = 0;
 	static Material materialmarkt = new Material();
+	static int turn;
 
 	public static void main(String[] args) {
 		Player.erstellen();
@@ -15,40 +14,25 @@ public class BT {
 		while (true) {
 			runde++;
 			Collections.shuffle(p); // Spieler mischen
-			for (int j = 0; j < p.size(); j++) { // Phase 1: Rundeninformationen
-				p.get(j).quartalsBericht();
-				p.get(j).getZufall();
+			for (turn = 0; turn < p.size(); turn++) { // Phase 1://
+														// Rundeninformationen
+				p.get(turn).quartalsBericht();
+				p.get(turn).getZufall();
 			}
 			Kunde.auftraegeErstellen();
-			for (int j = 0; j < p.size(); j++) { // Phase 2: Auftrag beschaffen
-				p.get(j).auftragb();
+			for (turn = 0; turn < p.size(); turn++) { // Phase 2: Auftrag //
+														// beschaffen
+				p.get(turn).auftragb();
 			}
 			materialmarkt.erstellen();
-			for (int j = 0; j < p.size(); j++) { // Phase 3: Material beschaffen
-				p.get(j).auftragInfo();
-				p.get(j).materialBeschaffen();
+			for (turn = 0; turn < p.size(); turn++) { // Phase 3: Material
+														// beschaffen
+				p.get(turn).auftragInfo();
+				p.get(turn).materialBeschaffen();
 			}
-			for (int j = 0; j < p.size(); j++) { // Phase 4: Investitionen
-				gebaeude(p.get(j));
-				mitarbeiter(p.get(j));
-				maschinen(p.get(j));
+			for (turn = 0; turn < p.size(); turn++) { // Phase 4: Investitionen
+				p.get(turn).investMenu(); // Gebäude, Maschinen, Mitarbeiter
 			}
 		}
 	}
-
-	private static void maschinen(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void mitarbeiter(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void gebaeude(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

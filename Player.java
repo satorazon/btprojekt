@@ -7,11 +7,14 @@ public class Player {
 	boolean sgv; // Schmiergeld verwendet
 	int id;
 	String name;
-	static double geld;
+	double geld;
 	int qual;
-	int kap;
+
+	Gebaeude geb = new Gebaeude(1);
 	static Vector<Auftrag> todo = new Vector<Auftrag>();
 	Material material = new Material();
+
+	int kap = (geb.ma.anzahl * geb.ma.level) + (geb.mp.anzahl * geb.mp.anzahl);
 
 	public Player(int id, String name) {
 		this.id = id;
@@ -28,7 +31,7 @@ public class Player {
 			Scanner sc = new Scanner(System.in);
 			String name = sc.nextLine();
 			BT.p.add(new Player(id, name));
-			Player.setGeld(10000);
+			BT.p.get(BT.turn).geld = 10000;
 			if (id >= 2) {
 				System.out.println(" Einen weiteren Spieler hinzufügen? y/n");
 				String a = sc.nextLine();
@@ -41,34 +44,15 @@ public class Player {
 			} else {
 				newp = true;
 			}
-		} while (newp = true);
-	}
-
-	public int getRep() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getEP() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public static void setGeld(int i) {
-		geld = i;
-	}
-
-	public double getGeld() {
-		return geld;
+		} while (newp == true);
 	}
 
 	public void getZufall() {
 		Zufallsereignis ze = null;
-		String ereignis;
 		int calcrep = rep / 10; // "RechenRep" 0 - 9
 		int random = (int) (Math.random() * 10); // Random 0 - 9
-		if (random > rep) { // wenn Random größer als Rep --> schlechtes
-							// Ereignis
+		if (random > calcrep) { // wenn Random größer als Rep --> schlechtes
+			// Ereignis
 			int k = 1;
 			int ran = (int) (Math.random() * 5);
 			ze = new Zufallsereignis(k, ran);
@@ -107,7 +91,7 @@ public class Player {
 		} else { // Ignorieren
 			rep -= ze.rep;
 		}
-
+		sc.close();
 	}
 
 	public void quartalsBericht() {
@@ -122,7 +106,7 @@ public class Player {
 	public void auftragb() {
 		Vector<Auftrag> legalau = new Vector<Auftrag>();
 		boolean weiter = true;
-		while (weiter = true) {
+		while (weiter == true) {
 			System.out.println("Aufträge:");
 			System.out.println();
 			int j = 0;
@@ -146,7 +130,6 @@ public class Player {
 				}
 			}
 			Scanner sc = new Scanner(System.in);
-			Angebot a;
 			System.out.println("Wähle einen Auftrag: ");
 			int wahl = sc.nextInt();
 			System.out.println("Der Höchstpreis liegt bei "
@@ -164,6 +147,7 @@ public class Player {
 			if (sc.nextLine().contentEquals("n")) {
 				weiter = false;
 			}
+			sc.close();
 		}
 	}
 
@@ -252,5 +236,15 @@ public class Player {
 				mehr = false;
 			}
 		}
+		sc.close();
+	}
+
+	public void investMenu() {
+		System.out.println("Was möchten Sie tun?");
+		System.out.println();
+		System.out.println("Das Gebäude auf Level " + (geb.level + 1) + " für "
+				+ geb.ausbkosten + " ausbauen. (1)");
+		System.out.println("");
+
 	}
 }

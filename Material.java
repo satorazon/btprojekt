@@ -1,10 +1,8 @@
-import java.util.Vector;
-
 public class Material {
 
-	static int mlow;
-	static int mmid;
-	static int mhigh;
+	int mlow;
+	int mmid;
+	int mhigh;
 	double pmlow;
 	double pmmid;
 	double pmhigh;
