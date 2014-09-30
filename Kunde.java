@@ -44,15 +44,15 @@ abstract class Kunde {
 		// Günstig Kunden
 		for (int i = 0; i < klow.size(); i++) {
 			int ran = (int) (Math.random() * 10);
-			if (ran < 6) {
+			if (ran < 6) { // Kunde soll einen Auftrag erstellen
 				klow.get(i).erzAuftrag();
 			}
-			if (ran > 5) {
+			if (ran > 5) { // Kunde soll zwei Aufträge erstellen
 				if (ran < 9) {
 					for (int j = 0; j < 2; j++) {
 						klow.get(i).erzAuftrag();
 					}
-				} else {
+				} else { // Kunde soll drei Aufträge erstellen
 					for (int j = 0; j < 3; j++) {
 						klow.get(i).erzAuftrag();
 					}
@@ -104,7 +104,7 @@ abstract class Kunde {
 		for (int i = 0; i < au.size(); i++) {
 			for (int j = 0; j < BT.p.size(); j++) {
 				if (BT.p.get(j).name.contentEquals(au.get(i).a.name)) {
-					Player.todo.add(au.get(i));
+					BT.p.get(BT.turn).todo.add(au.get(i));
 				}
 			}
 		}

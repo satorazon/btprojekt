@@ -5,12 +5,17 @@ public class Mitarbeiterschaft {
 	int anzahl;
 	int level;
 	int skosten = (level + 1) * 10000;
-	double kosten = ((level * 100) + BT.p.get(BT.turn).geb.maZulage) * anzahl;
 	int raum = level * 50;
+	Scanner sc = new Scanner(System.in);
 
 	public Mitarbeiterschaft(int level) {
 		this.level = level;
 		anzahl = 5;
+	}
+
+	public double kostenErmitteln() {
+		int k = ((level * 100) + BT.p.get(BT.turn).geb.maZulage) * anzahl;
+		return k;
 	}
 
 	public void schulen() {
@@ -30,7 +35,6 @@ public class Mitarbeiterschaft {
 	}
 
 	public void vergrößern() {
-		Scanner sc = new Scanner(System.in);
 		System.out
 				.println("Wieviele Mitarbeiter möchten Sie einstellen? 1 MA = 1.000");
 		int anz = sc.nextInt();
@@ -42,7 +46,8 @@ public class Mitarbeiterschaft {
 						+ (anz * BT.p.get(BT.turn).geb.maRaum)
 						+ " Raum-Einheiten.");
 				System.out.println("y/n");
-				if (sc.nextLine().contentEquals("y")) {
+				String a = sc.next();
+				if (a.contentEquals("y")) {
 					BT.p.get(BT.turn).geld -= anz * 5000;
 					BT.p.get(BT.turn).geb.prodRaum -= anz
 							* BT.p.get(BT.turn).geb.maRaum;
@@ -54,13 +59,12 @@ public class Mitarbeiterschaft {
 				}
 			} else {
 				System.out
-						.println("Sie haben nicht genug Produktionsraum um diese Menge an Maschinen aufzustellen");
+						.println("Sie haben nicht genug Produktionsraum um diese Menge an Mitarbeitern einzustellen");
 			}
 		} else {
 			System.out
-					.println("Sie haben nicht genug Geld um diese Menge an Maschinen zu kaufen");
+					.println("Sie haben nicht genug Geld um diese Menge an Mitarbeitern einzustellen");
 		}
-		sc.close();
 	}
 
 }

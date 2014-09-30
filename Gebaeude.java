@@ -7,6 +7,7 @@ public class Gebaeude {
 	int prodRaum = level * 100;
 	double kosten = level * 100;
 	double ausbkosten = (level + 1) * 100000;
+	Scanner sc = new Scanner(System.in);
 
 	Maschinenpark mp;
 	Mitarbeiterschaft ma;
@@ -44,10 +45,10 @@ public class Gebaeude {
 	}
 
 	public void arbeitsbVerb() {
-		Scanner sc = new Scanner(System.in);
 		System.out
 				.println("Möchten Sie die Arbeitsbedingungen für Ihre Mitarbeiter für 5.000 verbessern? y/n");
-		if (sc.nextLine().contentEquals("y")) {
+		String a = sc.next();
+		if (a.contentEquals("y")) {
 			if (maRaum < 5) {
 
 				if (BT.p.get(BT.turn).geld > 5000) {
@@ -59,9 +60,5 @@ public class Gebaeude {
 				}
 			}
 		}
-		sc.close();
 	}
-
-	// TODO: PRODUKTIONSKAPAZIÄT - IN AUFTRÄGEN - IM GEBÄUDE
-
 }

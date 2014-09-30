@@ -5,12 +5,17 @@ public class Maschinenpark {
 	int anzahl;
 	int level;
 	int ukosten = (level + 1) * 10000;
-	double kosten = (anzahl / level) * 10;
 	int raum = level * 50;
+	Scanner sc = new Scanner(System.in);
 
 	public Maschinenpark(int level) {
 		this.level = level;
 		anzahl = 5;
+	}
+
+	public double kostenErmitteln() {
+		double k = (anzahl / level) * 10;
+		return k;
 	}
 
 	public void upgraden() {
@@ -31,7 +36,6 @@ public class Maschinenpark {
 	}
 
 	public void vergrößern() {
-		Scanner sc = new Scanner(System.in);
 		System.out
 				.println("Wieviele Maschinen-Einheiten möchten sie kaufen? 1 ME = 5.000");
 		int anz = sc.nextInt();
@@ -43,7 +47,8 @@ public class Maschinenpark {
 				System.out.println("Die Maschienen werden " + (anz * 5)
 						+ " Raum-Einheiten belegen.");
 				System.out.println("y/n");
-				if (sc.nextLine().contentEquals("y")) {
+				String a = sc.next();
+				if (a.contentEquals("y")) {
 					BT.p.get(BT.turn).geld -= anz * 5000;
 					BT.p.get(BT.turn).geb.prodRaum -= anz * 5;
 					BT.p.get(BT.turn).geb.mp.anzahl += anz;
@@ -61,7 +66,6 @@ public class Maschinenpark {
 			System.out
 					.println("Sie haben nicht genug Geld um diese Menge an Maschinen zu kaufen");
 		}
-		sc.close();
 	}
 
 }

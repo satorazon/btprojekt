@@ -3,35 +3,56 @@ import java.util.Vector;
 
 public class BT {
 
-	static Vector<Player> p = new Vector<Player>();
-	static int runde = 0;
-	static Material materialmarkt = new Material();
-	static int turn;
+	static Vector<Player> p = new Vector<Player>(); // Liste der Spieler
+	static Material materialmarkt = new Material(); // Materialmarkt
+	static int runde; // Rundennummer
+	static int turn; // Aktiver Spieler
 
 	public static void main(String[] args) {
 		Player.erstellen();
 		Kunde.kundenErstellen();
 		while (true) {
 			runde++;
-			Collections.shuffle(p); // Spieler mischen
-			for (turn = 0; turn < p.size(); turn++) { // Phase 1://
+			System.out.println("Runde: " + runde);
+			System.out.println();
+			Collections.shuffle(p); // Spieler Reihenfolge mischen
+			Kunde.au.clear();
+			for (turn = 0; turn < p.size(); turn++) { // Phase 1:
 														// Rundeninformationen
-				p.get(turn).quartalsBericht();
-				p.get(turn).getZufall();
+														// und Zufallsereignis
+				if (runde > 1) {
+					System.out.println(p.get(turn).name + " ist an der Reihe");
+					System.out.println();
+					p.get(turn).quartalsBericht();
+					p.get(turn).clearRecord();
+					p.get(turn).getZufall();
+				}
 			}
 			Kunde.auftraegeErstellen();
-			for (turn = 0; turn < p.size(); turn++) { // Phase 2: Auftrag //
-														// beschaffen
-				p.get(turn).auftragb();
+			for (turn = 0; turn < p.size(); turn++) { // Phase 2: Angebote für
+														// Auftäge abgeben
+				System.out.println();
+				System.out.println(p.get(turn).name + " ist an der Reihe");
+				System.out.println();
+				p.get(turn).auBeschaffen();
 			}
+			Player.auZuteilen();
 			materialmarkt.erstellen();
-			for (turn = 0; turn < p.size(); turn++) { // Phase 3: Material
+			for (turn = 0; turn < p.size(); turn++) { // Phase 3: Material und
+														// Rohstoffe
 														// beschaffen
-				p.get(turn).auftragInfo();
-				p.get(turn).materialBeschaffen();
+				System.out.println();
+				System.out.println(p.get(turn).name + " ist an der Reihe");
+				System.out.println();
+				p.get(turn).einkaufMenu();
 			}
 			for (turn = 0; turn < p.size(); turn++) { // Phase 4: Investitionen
-				p.get(turn).investMenu(); // Gebäude, Maschinen, Mitarbeiter
+														// tätigen und Aufträge
+														// bearbeiten
+				System.out.println(p.get(turn).name + " ist an der Reihe");
+				System.out.println();
+				p.get(turn).investMenu();
+				p.get(turn).auBearbeiten();
 			}
 		}
 	}

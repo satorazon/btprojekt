@@ -2,7 +2,6 @@ public class Auftrag {
 
 	int auid;
 	int rep;
-	int qual;
 	int kap;
 	int mat;
 	int matsorte;
@@ -10,9 +9,10 @@ public class Auftrag {
 	int ep;
 	String name;
 	Angebot a;
+	boolean marke;
 
-	public Auftrag(String name, int auid, int minrep, int minqual, int kap,
-			int mat, int matsorte, double geld, int ep) {
+	public Auftrag(String name, int auid, int minrep, int kap, int mat,
+			int matsorte, double geld, int ep, boolean marke) {
 		this.auid = auid;
 		this.name = name;
 		int ran = (int) (Math.random() * 10);
@@ -22,11 +22,16 @@ public class Auftrag {
 		}
 		rand += 1;
 		rep = (int) (minrep * rand);
-		qual = (int) (minqual * rand);
 		this.mat = mat;
+		this.matsorte = matsorte;
 		this.kap = kap;
 		this.geld = geld;
 		this.ep = ep;
+		a = new Angebot("nobody", 999999999999.99);
 	}
+
+	// public void angebot(int auid, String name, double ang){
+	// a
+	// }
 
 }

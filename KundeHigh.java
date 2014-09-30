@@ -6,17 +6,24 @@ class KundeHigh extends Kunde {
 	}
 
 	public void erzAuftrag() {
-		int ran = (int) (Math.random() * 100);
-		double geld = ran * 10000;
+		int ran = (int) (Math.random() * 10);
+		int rgeld = ran * 100000;
 		int lilran = (int) (Math.random() * 100);
-		geld += lilran + 1000;
+		rgeld += lilran + 10000;
+		double geld = rgeld;
 		int kap = ran;
-		int mat = kap;
+		int mat = kap + (lilran / 2);
 		int matsorte = 3;
 		int ep = kap + 50;
-		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, minqual, kap, mat,
-				matsorte, geld, ep));
+		boolean marke = false;
+		if (BT.runde >= 10) {
+			ran = (int) (Math.random() * 3);
+			if ((ran + 1) > 2) {
+				marke = true;
+			}
+		}
+		Kunde.au.add(new Auftrag(name, Kunde.auid, minrep, kap, mat, matsorte,
+				geld, ep, marke));
 		Kunde.auid++;
 	}
-
 }
