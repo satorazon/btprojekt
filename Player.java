@@ -15,7 +15,7 @@ public class Player {
 	double matkosten;
 	double zufallkosten;
 	double ertraege;
-	DecimalFormat d = new DecimalFormat("#.00");
+	DecimalFormat d = new DecimalFormat("#0.00");
 
 	Gebaeude geb = new Gebaeude(1);
 	Material material = new Material();
@@ -201,7 +201,7 @@ public class Player {
 								System.out.println("(" + j + ".) Kunde: "
 										+ Kunde.au.get(i).name);
 								System.out.println("Höchstpreis: "
-										+ d.format(Kunde.au.get(i).geld));
+										+ d.format(Kunde.au.get(i).geld) + "$");
 								System.out.println("Erfahrungspunkte: "
 										+ Kunde.au.get(i).ep);
 								switch (Kunde.au.get(i).matsorte) {
@@ -233,7 +233,7 @@ public class Player {
 							System.out.println("(" + j + ".) Kunde: "
 									+ Kunde.au.get(i).name);
 							System.out.println("Höchstpreis: "
-									+ d.format(Kunde.au.get(i).geld));
+									+ d.format(Kunde.au.get(i).geld) + "$");
 							System.out.println("Erfahrungspunkte: "
 									+ Kunde.au.get(i).ep);
 							System.out.println("Material:");
@@ -258,19 +258,20 @@ public class Player {
 			System.out.println("Wählen Sie eines der Angebote: ");
 			int wahl = sc.nextInt() - 1;
 			System.out.println("Der Höchstpreis für diesen Auftrag liegt bei "
-					+ d.format(Kunde.au.get(legalau.elementAt(wahl)).geld)
+					+ d.format(Kunde.au.get(legalau.get(wahl).intValue()).geld)
 					+ "$.");
 			System.out.println("Machen Sie "
-					+ Kunde.au.get(legalau.elementAt(wahl)).name
+					+ Kunde.au.get(legalau.get(wahl).intValue()).name
 					+ " ein besseres Angebot: ");
 			double ang = sc.nextDouble();
-			if (ang > Kunde.au.get(legalau.elementAt(wahl)).a.angebot) {
-				Kunde.au.get(legalau.elementAt(wahl)).a.angebot = ang;
-				Kunde.au.get(legalau.elementAt(wahl)).a.name = name;
+			if (ang < Kunde.au.get(legalau.get(wahl).intValue()).a.angebot) {
+				Kunde.au.get(legalau.get(wahl).intValue()).a.angebot = ang;
+				Kunde.au.get(legalau.get(wahl).intValue()).a.name = name;
 			}
 			System.out.println();
 			System.out.println("Das Angebot wurde an "
-					+ Kunde.au.get(legalau.elementAt(wahl)).name + " gesendet");
+					+ Kunde.au.get(legalau.get(wahl).intValue()).name
+					+ " gesendet");
 			System.out.println();
 			System.out.println("Weitere Angebote machen? y/n");
 			String a = sc.next();
@@ -281,6 +282,7 @@ public class Player {
 	}
 
 	public void auftragInfo() {
+		System.out.println();
 		System.out.println("Sie haben folgende Aufträge erhalten: ");
 		System.out.println();
 		for (int i = 0; i < todo.size(); i++) {
@@ -288,11 +290,12 @@ public class Player {
 			System.out.println();
 			if (todo.get(i).marke == false) {
 				System.out.println("Marken-Auftrag: nein");
-				System.out.println("Entlohnung: " + todo.get(i).a.angebot);
+				System.out.println("Entlohnung: "
+						+ d.format(todo.get(i).a.angebot) + "$");
 			} else {
 				System.out.println("Marken-Auftrag: ja");
 				System.out.println("Entlohnung: "
-						+ (todo.get(i).a.angebot + 50000));
+						+ (d.format(todo.get(i).a.angebot + 50000)) + "$");
 			}
 			if (todo.get(i).matsorte == 1) {
 				System.out.println("Materialart: Günstig");
@@ -321,72 +324,80 @@ public class Player {
 			System.out.println("(3) Hohe Qualität "
 					+ d.format(BT.materialmarkt.pmmid) + "$ \t\t noch "
 					+ BT.materialmarkt.mhigh + " Stück");
+			System.out.println("(4) Zurück");
 			int a = sc.nextInt();
-			System.out.println("Wieviele Einheiten möchten Sie kaufen?");
-			int m = sc.nextInt();
-			if (a == 1) {
-				if (m <= BT.materialmarkt.mlow) {
-					double kosten = BT.materialmarkt.pmlow * m;
-					if (kosten < geld) {
-						System.out.println(m + " Einheiten für "
-								+ d.format(kosten) + " kaufen? y/n");
-						if (sc.next().contentEquals("y")) {
-							geld -= kosten;
-							matkosten += kosten;
-							BT.materialmarkt.mlow -= m;
-							material.mlow += m;
-							System.out.println("Erfolgreich!");
-						}
-					} else {
-						System.out.println("Sie haben nicht genug Geld");
-					}
-				} else {
-					System.out.println("Diese Menge ist nicht verfügbar");
-				}
-			}
-			if (a == 2) {
-				if (m <= BT.materialmarkt.mmid) {
-					double kosten = BT.materialmarkt.pmmid * m;
-					if (kosten < geld) {
-						System.out.println(m + " Einheiten für "
-								+ d.format(kosten) + " kaufen? y/n");
-						if (sc.next().contentEquals("y")) {
-							geld -= kosten;
-							matkosten += kosten;
-							BT.materialmarkt.mmid -= m;
-							material.mmid += m;
-							System.out.println("Erfolgreich!");
-						}
-					} else {
-						System.out.println("Sie haben nicht genug Geld");
-					}
-				} else {
-					System.out.println("Diese Menge ist nicht verfügbar");
-				}
-			}
-			if (a == 3) {
-				if (m <= BT.materialmarkt.mhigh) {
-					double kosten = BT.materialmarkt.pmhigh * m;
-					if (kosten < geld) {
-						System.out.println(m + " Einheiten für "
-								+ d.format(kosten) + " kaufen? y/n");
-						if (sc.next().contentEquals("y")) {
-							geld -= kosten;
-							matkosten += kosten;
-							BT.materialmarkt.mhigh -= m;
-							material.mhigh += m;
-							System.out.println("Erfolgreich!");
-						}
-					} else {
-						System.out.println("Sie haben nicht genug Geld");
-					}
-				} else {
-					System.out.println("Diese Menge ist nicht verfügbar");
-				}
-			}
-			System.out.println("Weitere Materialen kaufen? y/n");
-			if (sc.next().contains("n")) {
+			int m = 0;
+			if (a != 4) {
+				System.out.println("Wieviele Einheiten möchten Sie kaufen?");
+				m = sc.nextInt();
+			} else {
 				mehr = false;
+			}
+			if (mehr != false) {
+				if (a == 1) {
+					if (m <= BT.materialmarkt.mlow) {
+						double kosten = BT.materialmarkt.pmlow * m;
+						if (kosten < geld) {
+							System.out.println(m + " Einheiten für "
+									+ d.format(kosten) + "$" + " kaufen? y/n");
+							if (sc.next().contentEquals("y")) {
+								geld -= kosten;
+								matkosten += kosten;
+								BT.materialmarkt.mlow -= m;
+								material.mlow += m;
+								System.out.println("Erfolgreich!");
+							}
+						} else {
+							System.out.println("Sie haben nicht genug Geld");
+						}
+					} else {
+						System.out.println("Diese Menge ist nicht verfügbar");
+					}
+				}
+				if (a == 2) {
+					if (m <= BT.materialmarkt.mmid) {
+						double kosten = BT.materialmarkt.pmmid * m;
+						if (kosten < geld) {
+							System.out.println(m + " Einheiten für "
+									+ d.format(kosten) + "$" + " kaufen? y/n");
+							if (sc.next().contentEquals("y")) {
+								geld -= kosten;
+								matkosten += kosten;
+								BT.materialmarkt.mmid -= m;
+								material.mmid += m;
+								System.out.println("Erfolgreich!");
+							}
+						} else {
+							System.out.println("Sie haben nicht genug Geld");
+						}
+					} else {
+						System.out.println("Diese Menge ist nicht verfügbar");
+					}
+				}
+				if (a == 3) {
+					if (m <= BT.materialmarkt.mhigh) {
+						double kosten = BT.materialmarkt.pmhigh * m;
+						if (kosten < geld) {
+							System.out.println(m + " Einheiten für "
+									+ d.format(kosten) + "$" + " kaufen? y/n");
+							if (sc.next().contentEquals("y")) {
+								geld -= kosten;
+								matkosten += kosten;
+								BT.materialmarkt.mhigh -= m;
+								material.mhigh += m;
+								System.out.println("Erfolgreich!");
+							}
+						} else {
+							System.out.println("Sie haben nicht genug Geld");
+						}
+					} else {
+						System.out.println("Diese Menge ist nicht verfügbar");
+					}
+				}
+				System.out.println("Weitere Materialen kaufen? y/n");
+				if (sc.next().contains("n")) {
+					mehr = false;
+				}
 			}
 		}
 	}
@@ -396,14 +407,16 @@ public class Player {
 		while (weiter == true) {
 			System.out.println("Was möchten Sie tun?");
 			System.out.println();
-			System.out.println("(1) Das Gebäude auf Level " + (geb.level + 1)
-					+ " für " + geb.ausbkosten + " ausbauen");
+			System.out.println("(1) Das Gebäude für " + d.format(geb.ausbkosten)+ "$" +
+					" auf Level " + (geb.level + 1) + " ausbauen");
 			System.out.println("(2) Neue Maschinen kaufen");
-			System.out.println("(3) Ihre Maschinen für" + geb.mp.ukosten
-					+ " auf Level " + (geb.mp.level + 1) + " verbessern");
+			System.out.println("(3) Ihre Maschinen für "
+					+ d.format(geb.mp.ukosten) + "$" + " auf Level "
+					+ (geb.mp.level + 1) + " verbessern");
 			System.out.println("(4) Neue Mitarbeiter einstellen");
-			System.out.println("(5) Ihre Mitarbeiter für " + geb.ma.skosten
-					+ " auf Level " + (geb.ma.level + 1) + " fortbilden");
+			System.out.println("(5) Ihre Mitarbeiter für "
+					+ d.format(geb.ma.skosten) + "$" + " auf Level "
+					+ (geb.ma.level + 1) + " fortbilden");
 			System.out.println("(6) Ihre eigene Marke gründen");
 			System.out.println("(7) Nichts unternehmen");
 			int input = sc.nextInt();
@@ -435,7 +448,9 @@ public class Player {
 					System.out
 							.println("Diese Funktion ist erst ab Runde 10 verfügbar");
 				}
+				break;
 			case 7:
+				weiter = false;
 				break;
 			}
 			if (input != 7) {
@@ -522,11 +537,16 @@ public class Player {
 		if (geld > 200000) {
 			System.out.println("Geben Sie Ihrer Marke einen Namen: ");
 			mname = sc.next();
-			marke = true;
-			geld -= 200000;
+			System.out.println("Möchten Sie " + mname
+					+ " für 200000$ gründen? y/n");
+			if (sc.next().contains("y")) {
+				marke = true;
+				geld -= 200000;
+			} else {
+				System.out.println("Vorgang abgebrochen");
+			}
 		} else {
-			System.out
-					.println("Sie haben nicht genug Geld um eine Marke anzulegen");
+			System.out.println("Sie benötigen 200000$ um eine Marke anzulegen");
 		}
 	}
 

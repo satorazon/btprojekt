@@ -21,7 +21,9 @@ public class BT {
 														// Rundeninformationen
 														// und Zufallsereignis
 				if (runde > 1) {
+					System.out.println("------------------------------------");
 					System.out.println(p.get(turn).name + " ist an der Reihe");
+					System.out.println("------------------------------------");
 					System.out.println();
 					p.get(turn).quartalsBericht();
 					p.get(turn).clearRecord();
