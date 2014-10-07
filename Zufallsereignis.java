@@ -39,12 +39,6 @@ public class Zufallsereignis {
 				geld = 0;
 				rep = 0;
 				break;
-
-			default:
-				ereignis = "blabla"; // muss eigentlich nicht ausgefüllt werden
-				geld = 0;
-				rep = 0;
-				break;
 			}
 		}
 	}

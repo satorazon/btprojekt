@@ -4,13 +4,13 @@ public class Mitarbeiterschaft {
 
 	int anzahl;
 	int level;
-	int skosten = (level + 1) * 10000;
-	int raum = level * 50;
+	int skosten;
 	Scanner sc = new Scanner(System.in);
 
 	public Mitarbeiterschaft(int level) {
 		this.level = level;
 		anzahl = 5;
+		skosten = (level + 1) * 10000;
 	}
 
 	public double kostenErmitteln() {
@@ -32,6 +32,7 @@ public class Mitarbeiterschaft {
 		} else {
 			System.out.println("Ihren Mitarbeiter sind optimal ausgebildet.");
 		}
+		skosten = (level + 1) * 10000;
 	}
 
 	public void vergrößern() {

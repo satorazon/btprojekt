@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class Gebaeude {
 
 	int level;
-	int lagerRaum = level * 100;
-	int prodRaum = level * 100;
-	double kosten = level * 100;
-	double ausbkosten = (level + 1) * 100000;
+	int lagerRaum;
+	int prodRaum;
+	double kosten;
+	double ausbkosten;
 	Scanner sc = new Scanner(System.in);
 
 	Maschinenpark mp;
@@ -23,6 +23,10 @@ public class Gebaeude {
 		arbeitsbed = 1;
 		maRaum = 1;
 		maZulage = 0;
+		lagerRaum = level * 100;
+		prodRaum = level * 100;
+		kosten = level * 100;
+		ausbkosten = (level + 1) * 100000;
 	}
 
 	public void ausbauen() {
@@ -31,6 +35,7 @@ public class Gebaeude {
 				lagerRaum = level * 100;
 				prodRaum = level * 100;
 				kosten = level * 10;
+				ausbkosten = (level + 1) * 100000;
 				BT.p.get(BT.turn).geld -= ausbkosten;
 				level++;
 				System.out.println("Ihr Gebäude wurde erfolgreich ausgebaut.");

@@ -4,13 +4,13 @@ public class Maschinenpark {
 
 	int anzahl;
 	int level;
-	int ukosten = (level + 1) * 10000;
-	int raum = level * 50;
+	int ukosten;
 	Scanner sc = new Scanner(System.in);
 
 	public Maschinenpark(int level) {
 		this.level = level;
 		anzahl = 5;
+		ukosten = (level + 1) * 10000;
 	}
 
 	public double kostenErmitteln() {
@@ -33,6 +33,7 @@ public class Maschinenpark {
 			System.out
 					.println("Sie haben Ihren Maschinenpark bereits auf die höchste Stufe optimiert.");
 		}
+		ukosten = (level + 1) * 10000;
 	}
 
 	public void vergrößern() {

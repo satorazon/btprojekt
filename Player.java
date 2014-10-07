@@ -22,7 +22,7 @@ public class Player {
 	Vector<Auftrag> todo = new Vector<Auftrag>();
 	Vector<Auftrag> failed = new Vector<Auftrag>();
 	Vector<Auftrag> completed = new Vector<Auftrag>();
-	int kap = (geb.ma.anzahl * geb.ma.level) + (geb.mp.anzahl * geb.mp.anzahl); // Produktionskapazität
+	int kap; // Produktionskapazität
 	static Scanner sc = new Scanner(System.in);
 
 	public Player(int id, String name) {
@@ -31,6 +31,11 @@ public class Player {
 		geld = 10000;
 	}
 
+	public int getKap(){
+		kap = (geb.ma.anzahl * geb.ma.level) + (geb.mp.anzahl * geb.mp.anzahl);
+		return kap;
+	}
+	
 	public static void erstellen() {
 		System.out.println("Willkommen bei Bangladesch Tycoon!");
 		boolean newp = true;
@@ -195,7 +200,7 @@ public class Player {
 					if (Kunde.au.get(i).marke == false) { // Spieler hat keine
 															// Marke
 						if (rep >= Kunde.au.get(i).rep) { // Prüfung auf Rep
-							if (kap >= Kunde.au.get(i).kap) { // Prüfung auf Kap
+							if (getKap() >= Kunde.au.get(i).kap) { // Prüfung auf Kap
 								legalau.add(i);
 								j++;
 								System.out.println("(" + j + ".) Kunde: "
@@ -227,7 +232,7 @@ public class Player {
 					}
 				} else { // Spieler hat Marke
 					if (rep >= Kunde.au.get(i).rep) {
-						if (kap >= Kunde.au.get(i).kap) {
+						if (getKap() >= Kunde.au.get(i).kap) {
 							legalau.add(i);
 							j++;
 							System.out.println("(" + j + ".) Kunde: "
@@ -466,7 +471,7 @@ public class Player {
 
 	public void auBearbeiten() {
 		boolean fail = false;
-		int restkap = kap;
+		int restkap = getKap();
 		for (int i = 0; i < todo.size(); i++) {
 			restkap -= todo.get(i).kap;
 			if (restkap < 0) {
