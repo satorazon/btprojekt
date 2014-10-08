@@ -32,12 +32,12 @@ public class Gebaeude {
 	public void ausbauen() {
 		if (level < 6) {
 			if (BT.p.get(BT.turn).geld > ausbkosten) {
+				level++;
 				lagerRaum = level * 100;
 				prodRaum = level * 100;
 				kosten = level * 10;
 				ausbkosten = (level + 1) * 100000;
 				BT.p.get(BT.turn).geld -= ausbkosten;
-				level++;
 				System.out.println("Ihr Gebäude wurde erfolgreich ausgebaut.");
 			} else {
 				System.out
