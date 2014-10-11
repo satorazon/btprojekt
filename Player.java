@@ -22,7 +22,7 @@ public class Player {
 	Vector<Auftrag> todo = new Vector<Auftrag>();
 	Vector<Auftrag> failed = new Vector<Auftrag>();
 	Vector<Auftrag> completed = new Vector<Auftrag>();
-	int kap; // Produktionskapazität
+	int kap; // ProduktionskapazitÃ¤t
 	static Scanner sc = new Scanner(System.in);
 
 	public Player(int id, String name) {
@@ -32,7 +32,7 @@ public class Player {
 	}
 
 	public int getKap(){
-		kap = (geb.ma.anzahl * geb.ma.level) + (geb.mp.anzahl * geb.mp.anzahl);
+		kap = (geb.ma.anzahl * geb.ma.level) + (geb.mp.anzahl * geb.mp.level);
 		return kap;
 	}
 	
@@ -44,14 +44,14 @@ public class Player {
 			id++;
 			System.out.println("Geben Sie einen Spielernamen ein: ");
 			String name = sc.next();
-			BT.p.add(new Player(id, name)); // Spieler zur Liste hinzufügen
+			BT.p.add(new Player(id, name)); // Spieler zur Liste hinzufÃ¼gen
 			System.out
 					.println("Willkommen "
 							+ name
 							+ ", Sie erhalten eine kleine Textilfabrik und 10.000$ Startkapital");
 			if (id >= 2) { // Mindestens 2 Spieler
 				System.out
-						.println("Möchten Sie einen weiteren Spieler hinzufügen? y/n");
+						.println("MÃ¶chten Sie einen weiteren Spieler hinzufÃ¼gen? y/n");
 				String a = sc.next();
 				if (a.contentEquals("y")) {
 					newp = true;
@@ -60,7 +60,7 @@ public class Player {
 				}
 			} else {
 				System.out
-						.println("Es wird mindestens noch ein Spieler benötigt");
+						.println("Es wird mindestens noch ein Spieler benÃ¶tigt");
 				newp = true;
 			}
 		} while (newp == true);
@@ -71,14 +71,14 @@ public class Player {
 		Zufallsereignis ze = null;
 		int calcrep = rep / 10; // "RechenRep" 0 - 9
 		int random = (int) (Math.random() * 10); // Random 0 - 9
-		if (random > calcrep) { // wenn Random größer als Rep --> schlechtes
+		if (random > calcrep) { // wenn Random grÃ¶ÃŸer als Rep --> schlechtes
 								// Ereignis
 			int k = 1; // 1 = schlechtes Ereignis
 			int ran = (int) (Math.random() * 5);
 			ze = new Zufallsereignis(k, ran);
 		}
 		if (rep > 5) {
-			if (random == rep) { // wenn Random gleich Rep aber größer als 5
+			if (random == rep) { // wenn Random gleich Rep aber grÃ¶ÃŸer als 5
 									// -->
 									// gutes Ereignis
 				int k = 0;
@@ -95,7 +95,7 @@ public class Player {
 		} else if (input == 3) { // Schmiergeldversuch
 			System.out.println("Wieviel Schmiergeld wollen Sie zahlen?");
 			System.out
-					.println("Denken Sie daran: ein höherer Betrag erhöht Ihre Erfolgschancen.");
+					.println("Denken Sie daran: ein hÃ¶herer Betrag erhÃ¶ht Ihre Erfolgschancen.");
 			ze.sgeld = sc.nextDouble();
 			double a = ze.geld * 0.75;
 			double ran = Math.random() * a;
@@ -121,7 +121,7 @@ public class Player {
 			System.out.println("Erfahrungspunkte: " + ep);
 			System.out.println("Geld: " + d.format(geld) + "$");
 			System.out.println("------------------------------");
-			System.out.println("Erledigte Aufträge: ");
+			System.out.println("Erledigte AuftrÃ¤ge: ");
 			for (int i = 0; i < completed.size(); i++) {
 				System.out.println(completed.get(i).name + "\t\t\t"
 						+ d.format(completed.get(i).a.angebot) + "$ \t\t"
@@ -131,7 +131,7 @@ public class Player {
 			}
 			System.out.println("\t\t\t\t\t\t" + d.format(gesgeld) + "$ \t\t"
 					+ gesep + "EP");
-			System.out.println("Nicht erledigte Aufträge: ");
+			System.out.println("Nicht erledigte AuftrÃ¤ge: ");
 			for (int i = 0; i < failed.size(); i++) {
 				System.out.println(failed.get(i).name + "\t\t\t"
 						+ "Strafzahlung: "
@@ -143,14 +143,14 @@ public class Player {
 					+ (-20 * failed.size()) + "EP");
 			System.out.println("------------------------------");
 			System.out.println("Rohstoffbestand: ");
-			System.out.println("Günstiges Material: " + material.mlow
+			System.out.println("GÃ¼nstiges Material: " + material.mlow
 					+ " Einheiten");
 			System.out.println("Durchschnitts Material: " + material.mmid
 					+ " Einheiten");
 			System.out.println("Hochwertiges Material: " + material.mhigh
 					+ " Einheiten");
 			System.out.println("------------------------------");
-			System.out.println("Gebäude: ");
+			System.out.println("GebÃ¤ude: ");
 			System.out.println("Ausbau-Stufe: " + geb.level);
 			System.out.println("Kosten letztes Quartal: "
 					+ d.format(geb.kosten));
@@ -166,7 +166,7 @@ public class Player {
 					+ d.format(geb.mp.kostenErmitteln()));
 			System.out.println("------------------------------");
 			System.out.println("Gesamtkosten: " + d.format(kostenErmitteln()));
-			System.out.println("Erträge: " + d.format(ertraege));
+			System.out.println("ErtrÃ¤ge: " + d.format(ertraege));
 			System.out.println("Bilanz: "
 					+ d.format((ertraege - kostenErmitteln())));
 		}
@@ -187,31 +187,31 @@ public class Player {
 	}
 
 	public void auBeschaffen() {
-		Vector<Integer> legalau = new Vector<Integer>(); // Liste der für den
-															// Spieler wählbaren
-															// Aufträge
+		Vector<Integer> legalau = new Vector<Integer>(); // Liste der fÃ¼r den
+															// Spieler wÃ¤hlbaren
+															// AuftrÃ¤ge
 		boolean weiter = true;
 		while (weiter == true) {
-			System.out.println("Sie können aus folgenden Aufträgen wählen:");
+			System.out.println("Sie kÃ¶nnen aus folgenden AuftrÃ¤gen wÃ¤hlen:");
 			System.out.println();
 			int j = 0;
 			for (int i = 0; i < Kunde.au.size(); i++) {
 				if (marke == false) {
 					if (Kunde.au.get(i).marke == false) { // Spieler hat keine
 															// Marke
-						if (rep >= Kunde.au.get(i).rep) { // Prüfung auf Rep
-							if (getKap() >= Kunde.au.get(i).kap) { // Prüfung auf Kap
+						if (rep >= Kunde.au.get(i).rep) { // PrÃ¼fung auf Rep
+							if (getKap() >= Kunde.au.get(i).kap) { // PrÃ¼fung auf Kap
 								legalau.add(i);
 								j++;
 								System.out.println("(" + j + ".) Kunde: "
 										+ Kunde.au.get(i).name);
-								System.out.println("Höchstpreis: "
+								System.out.println("HÃ¶chstpreis: "
 										+ d.format(Kunde.au.get(i).geld) + "$");
 								System.out.println("Erfahrungspunkte: "
 										+ Kunde.au.get(i).ep);
 								switch (Kunde.au.get(i).matsorte) {
 								case 1:
-									System.out.println("Material: Günstig");
+									System.out.println("Material: GÃ¼nstig");
 									break;
 								case 2:
 									System.out
@@ -223,7 +223,7 @@ public class Player {
 								}
 								System.out.println("Menge: "
 										+ Kunde.au.get(i).mat);
-								System.out.println("Benötigte Kapazität: "
+								System.out.println("BenÃ¶tigte KapazitÃ¤t: "
 										+ Kunde.au.get(i).kap);
 								System.out.println();
 								System.out.println();
@@ -237,14 +237,14 @@ public class Player {
 							j++;
 							System.out.println("(" + j + ".) Kunde: "
 									+ Kunde.au.get(i).name);
-							System.out.println("Höchstpreis: "
+							System.out.println("HÃ¶chstpreis: "
 									+ d.format(Kunde.au.get(i).geld) + "$");
 							System.out.println("Erfahrungspunkte: "
 									+ Kunde.au.get(i).ep);
 							System.out.println("Material:");
 							switch (Kunde.au.get(i).matsorte) {
 							case 1:
-								System.out.println("Art: Günstig");
+								System.out.println("Art: GÃ¼nstig");
 								break;
 							case 2:
 								System.out.println("Art: Durchschnitt");
@@ -260,9 +260,9 @@ public class Player {
 					}
 				}
 			}
-			System.out.println("Wählen Sie eines der Angebote: ");
+			System.out.println("WÃ¤hlen Sie eines der Angebote: ");
 			int wahl = sc.nextInt() - 1;
-			System.out.println("Der Höchstpreis für diesen Auftrag liegt bei "
+			System.out.println("Der HÃ¶chstpreis fÃ¼r diesen Auftrag liegt bei "
 					+ d.format(Kunde.au.get(legalau.get(wahl).intValue()).geld)
 					+ "$.");
 			System.out.println("Machen Sie "
@@ -288,7 +288,7 @@ public class Player {
 
 	public void auftragInfo() {
 		System.out.println();
-		System.out.println("Sie haben folgende Aufträge erhalten: ");
+		System.out.println("Sie haben folgende AuftrÃ¤ge erhalten: ");
 		System.out.println();
 		for (int i = 0; i < todo.size(); i++) {
 			System.out.println("Kunde: " + todo.get(i).name);
@@ -303,13 +303,13 @@ public class Player {
 						+ (d.format(todo.get(i).a.angebot + 50000)) + "$");
 			}
 			if (todo.get(i).matsorte == 1) {
-				System.out.println("Materialart: Günstig");
+				System.out.println("Materialart: GÃ¼nstig");
 			} else if (todo.get(i).matsorte == 2) {
 				System.out.println("Materialart: Durchschnitt");
 			} else {
 				System.out.println("Materialart: Hochwertig");
 			}
-			System.out.println("Benötigte Materialeinheiten: "
+			System.out.println("BenÃ¶tigte Materialeinheiten: "
 					+ todo.get(i).mat);
 			System.out.println();
 			System.out.println();
@@ -319,21 +319,21 @@ public class Player {
 	public void materialBeschaffen() {
 		boolean mehr = true;
 		while (mehr == true) {
-			System.out.println("Welche Materialsorte möchten Sie kaufen?");
-			System.out.println("(1) Niedrige Qualität "
+			System.out.println("Welche Materialsorte mÃ¶chten Sie kaufen?");
+			System.out.println("(1) Niedrige QualitÃ¤t "
 					+ d.format(BT.materialmarkt.pmlow) + "$ \t\t noch "
-					+ BT.materialmarkt.mlow + " Stück");
-			System.out.println("(2) Mittlere Qualität "
+					+ BT.materialmarkt.mlow + " StÃ¼ck");
+			System.out.println("(2) Mittlere QualitÃ¤t "
 					+ d.format(BT.materialmarkt.pmmid) + "$ \t\t noch "
-					+ BT.materialmarkt.mmid + " Stück");
-			System.out.println("(3) Hohe Qualität "
+					+ BT.materialmarkt.mmid + " StÃ¼ck");
+			System.out.println("(3) Hohe QualitÃ¤t "
 					+ d.format(BT.materialmarkt.pmmid) + "$ \t\t noch "
-					+ BT.materialmarkt.mhigh + " Stück");
-			System.out.println("(4) Zurück");
+					+ BT.materialmarkt.mhigh + " StÃ¼ck");
+			System.out.println("(4) ZurÃ¼ck");
 			int a = sc.nextInt();
 			int m = 0;
 			if (a != 4) {
-				System.out.println("Wieviele Einheiten möchten Sie kaufen?");
+				System.out.println("Wieviele Einheiten mÃ¶chten Sie kaufen?");
 				m = sc.nextInt();
 			} else {
 				mehr = false;
@@ -343,7 +343,7 @@ public class Player {
 					if (m <= BT.materialmarkt.mlow) {
 						double kosten = BT.materialmarkt.pmlow * m;
 						if (kosten < geld) {
-							System.out.println(m + " Einheiten für "
+							System.out.println(m + " Einheiten fÃ¼r "
 									+ d.format(kosten) + "$" + " kaufen? y/n");
 							if (sc.next().contentEquals("y")) {
 								geld -= kosten;
@@ -356,14 +356,14 @@ public class Player {
 							System.out.println("Sie haben nicht genug Geld");
 						}
 					} else {
-						System.out.println("Diese Menge ist nicht verfügbar");
+						System.out.println("Diese Menge ist nicht verfÃ¼gbar");
 					}
 				}
 				if (a == 2) {
 					if (m <= BT.materialmarkt.mmid) {
 						double kosten = BT.materialmarkt.pmmid * m;
 						if (kosten < geld) {
-							System.out.println(m + " Einheiten für "
+							System.out.println(m + " Einheiten fÃ¼r "
 									+ d.format(kosten) + "$" + " kaufen? y/n");
 							if (sc.next().contentEquals("y")) {
 								geld -= kosten;
@@ -376,14 +376,14 @@ public class Player {
 							System.out.println("Sie haben nicht genug Geld");
 						}
 					} else {
-						System.out.println("Diese Menge ist nicht verfügbar");
+						System.out.println("Diese Menge ist nicht verfÃ¼gbar");
 					}
 				}
 				if (a == 3) {
 					if (m <= BT.materialmarkt.mhigh) {
 						double kosten = BT.materialmarkt.pmhigh * m;
 						if (kosten < geld) {
-							System.out.println(m + " Einheiten für "
+							System.out.println(m + " Einheiten fÃ¼r "
 									+ d.format(kosten) + "$" + " kaufen? y/n");
 							if (sc.next().contentEquals("y")) {
 								geld -= kosten;
@@ -396,7 +396,7 @@ public class Player {
 							System.out.println("Sie haben nicht genug Geld");
 						}
 					} else {
-						System.out.println("Diese Menge ist nicht verfügbar");
+						System.out.println("Diese Menge ist nicht verfÃ¼gbar");
 					}
 				}
 				System.out.println("Weitere Materialen kaufen? y/n");
@@ -410,19 +410,19 @@ public class Player {
 	public void investMenu() {
 		boolean weiter = true;
 		while (weiter == true) {
-			System.out.println("Was möchten Sie tun?");
+			System.out.println("Was mÃ¶chten Sie tun?");
 			System.out.println();
-			System.out.println("(1) Das Gebäude für " + d.format(geb.ausbkosten)+ "$" +
+			System.out.println("(1) Das GebÃ¤ude fÃ¼r " + d.format(geb.ausbkosten)+ "$" +
 					" auf Level " + (geb.level + 1) + " ausbauen");
 			System.out.println("(2) Neue Maschinen kaufen");
-			System.out.println("(3) Ihre Maschinen für "
+			System.out.println("(3) Ihre Maschinen fÃ¼r "
 					+ d.format(geb.mp.ukosten) + "$" + " auf Level "
 					+ (geb.mp.level + 1) + " verbessern");
 			System.out.println("(4) Neue Mitarbeiter einstellen");
-			System.out.println("(5) Ihre Mitarbeiter für "
+			System.out.println("(5) Ihre Mitarbeiter fÃ¼r "
 					+ d.format(geb.ma.skosten) + "$" + " auf Level "
 					+ (geb.ma.level + 1) + " fortbilden");
-			System.out.println("(6) Ihre eigene Marke gründen");
+			System.out.println("(6) Ihre eigene Marke grÃ¼nden");
 			System.out.println("(7) Nichts unternehmen");
 			int input = sc.nextInt();
 			switch (input) {
@@ -430,13 +430,13 @@ public class Player {
 				geb.ausbauen();
 				break;
 			case 2:
-				geb.mp.vergrößern();
+				geb.mp.vergrÃ¶ÃŸern();
 				break;
 			case 3:
 				geb.mp.upgraden();
 				break;
 			case 4:
-				geb.ma.vergrößern();
+				geb.ma.vergrÃ¶ÃŸern();
 				break;
 			case 5:
 				geb.ma.schulen();
@@ -451,7 +451,7 @@ public class Player {
 					}
 				} else {
 					System.out
-							.println("Diese Funktion ist erst ab Runde 10 verfügbar");
+							.println("Diese Funktion ist erst ab Runde 10 verfÃ¼gbar");
 				}
 				break;
 			case 7:
@@ -460,7 +460,7 @@ public class Player {
 			}
 			if (input != 7) {
 				System.out
-						.println("Möchten sie weitere Investitionen tätigen? y/n");
+						.println("MÃ¶chten sie weitere Investitionen tÃ¤tigen? y/n");
 
 				if (sc.next().contentEquals("n")) {
 					weiter = false;
@@ -487,14 +487,14 @@ public class Player {
 					break;
 				case 2:
 					material.mmid -= todo.get(i).mat;
-					if (material.mlow < 0) {
+					if (material.mmid < 0) {
 						fail = true;
 						material.mmid = 0;
 					}
 					break;
 				case 3:
 					material.mhigh -= todo.get(i).mat;
-					if (material.mlow < 0) {
+					if (material.mhigh < 0) {
 						fail = true;
 						material.mhigh = 0;
 					}
@@ -523,8 +523,8 @@ public class Player {
 	public void einkaufMenu() {
 		boolean weiter = true;
 		while (weiter == true) {
-			System.out.println("Was möchten Sie tun: ");
-			System.out.println("(1) Erhaltene Aufträge ansehen");
+			System.out.println("Was mÃ¶chten Sie tun: ");
+			System.out.println("(1) Erhaltene AuftrÃ¤ge ansehen");
 			System.out.println("(2) Material einkaufen");
 			System.out.println("(3) Nichts unternehmen");
 			int input = sc.nextInt();
@@ -542,8 +542,8 @@ public class Player {
 		if (geld > 200000) {
 			System.out.println("Geben Sie Ihrer Marke einen Namen: ");
 			mname = sc.next();
-			System.out.println("Möchten Sie " + mname
-					+ " für 200000$ gründen? y/n");
+			System.out.println("MÃ¶chten Sie " + mname
+					+ " fÃ¼r 200000$ grÃ¼nden? y/n");
 			if (sc.next().contains("y")) {
 				marke = true;
 				geld -= 200000;
@@ -551,7 +551,7 @@ public class Player {
 				System.out.println("Vorgang abgebrochen");
 			}
 		} else {
-			System.out.println("Sie benötigen 200000$ um eine Marke anzulegen");
+			System.out.println("Sie benÃ¶tigen 200000$ um eine Marke anzulegen");
 		}
 	}
 
