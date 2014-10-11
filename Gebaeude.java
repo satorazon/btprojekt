@@ -32,26 +32,26 @@ public class Gebaeude {
 	public void ausbauen() {
 		if (level < 6) {
 			if (BT.p.get(BT.turn).geld > ausbkosten) {
+				BT.p.get(BT.turn).geld -= ausbkosten;
 				level++;
 				lagerRaum = level * 100;
 				prodRaum = level * 100;
-				kosten = level * 10;
+				kosten = level * 100;
 				ausbkosten = (level + 1) * 100000;
-				BT.p.get(BT.turn).geld -= ausbkosten;
-				System.out.println("Ihr Gebäude wurde erfolgreich ausgebaut.");
+				System.out.println("Ihr GebÃ¤ude wurde erfolgreich ausgebaut.");
 			} else {
 				System.out
-						.println("Sie haben nicht genug Geld um Ihr Gebäude auszubauen.");
+						.println("Sie haben nicht genug Geld um Ihr GebÃ¤ude auszubauen.");
 			}
 		} else {
 			System.out
-					.println("Ein weiterer Ausbau Ihres Gebäudes ist nicht möglich.");
+					.println("Ein weiterer Ausbau Ihres GebÃ¤udes ist nicht mÃ¶glich.");
 		}
 	}
 
 	public void arbeitsbVerb() {
 		System.out
-				.println("Möchten Sie die Arbeitsbedingungen für Ihre Mitarbeiter für 5.000 verbessern? y/n");
+				.println("MÃ¶chten Sie die Arbeitsbedingungen fÃ¼r Ihre Mitarbeiter fÃ¼r 5.000 verbessern? y/n");
 		String a = sc.next();
 		if (a.contentEquals("y")) {
 			if (maRaum < 5) {
