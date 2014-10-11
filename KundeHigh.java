@@ -2,7 +2,6 @@ class KundeHigh extends Kunde {
 
 	public KundeHigh(int id, String name, int minrep, int minqual) {
 		super(id, name, minrep, minqual);
-		this.name = name;
 	}
 
 	public void erzAuftrag() {
