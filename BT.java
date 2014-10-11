@@ -4,6 +4,9 @@ import java.util.Vector;
 public class BT {
 
 	static Vector<Player> p = new Vector<Player>(); // Liste der Spieler
+	static Vector<Kunde> klow = new Vector<Kunde>(); // Kundenlisten
+	static Vector<Kunde> kmid = new Vector<Kunde>();
+	static Vector<Kunde> khigh = new Vector<Kunde>();
 	static Material materialmarkt = new Material(); // Materialmarkt
 	static int runde; // Rundennummer
 	static int turn; // Aktiver Spieler
