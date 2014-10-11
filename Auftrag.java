@@ -27,6 +27,7 @@ public class Auftrag {
 		this.kap = kap;
 		this.geld = geld;
 		this.ep = ep;
+		this.marke = marke;
 		a = new Angebot("nobody", 999999999999.99);
 	}
 
