@@ -15,18 +15,20 @@ abstract class Kunde {
 	public Kunde(int id, String name, int minrep, int minqual) {
 		this.id = id;
 		this.name = name;
+		this.minrep = minrep;
+		this.minqual = minqual;
 	}
 
 	public static void kundenErstellen() {
 		int id = 0;
-		String[] kundenname = { "Cheap", "Günstig und Gut", "Mik", "Ladi",
+		String[] kundenname = { "Cheap", "GÃ¼nstig und Gut", "Mik", "Ladi",
 				"H&A", "C&M", "Fliegele", "Ver & Dolce", "Sport Design" };
 		for (int i = 0; i < BT.p.size(); i++) {
 			BT.klow.add(new KundeLow(id, kundenname[id], 0, 10));
 			id++;
 		}
 		for (int i = 0; i < ((BT.p.size() / 4) + (BT.p.size() / 2)); i++) {
-			BT.kmid.add(new KundeMid(id, kundenname[id], 60, 40));
+			BT.kmid.add(new KundeMid(id, kundenname[id], 30, 40));
 			id++;
 		}
 		for (int i = 0; i < (BT.p.size() / 2); i++) {
@@ -37,18 +39,18 @@ abstract class Kunde {
 
 	public static void auftraegeErstellen() {
 
-		// Günstig Kunden
+		// GÃ¼nstig Kunden
 		for (int i = 0; i < BT.klow.size(); i++) {
 			int ran = (int) (Math.random() * 10);
 			if (ran < 6) { // Kunde soll einen Auftrag erstellen
 				BT.klow.get(i).erzAuftrag();
 			}
-			if (ran > 5) { // Kunde soll zwei Aufträge erstellen
+			if (ran > 5) { // Kunde soll zwei AuftrÃ¤ge erstellen
 				if (ran < 9) {
 					for (int j = 0; j < 2; j++) {
 						BT.klow.get(i).erzAuftrag();
 					}
-				} else { // Kunde soll drei Aufträge erstellen
+				} else { // Kunde soll drei AuftrÃ¤ge erstellen
 					for (int j = 0; j < 3; j++) {
 						BT.klow.get(i).erzAuftrag();
 					}
@@ -96,7 +98,7 @@ abstract class Kunde {
 
 	public abstract void erzAuftrag();
 
-	public static void auftragsBestätigung() {
+	public static void auftragsBestÃ¤tigung() {
 		for (int i = 0; i < au.size(); i++) {
 			for (int j = 0; j < BT.p.size(); j++) {
 				if (BT.p.get(j).name.contentEquals(au.get(i).a.name)) {
