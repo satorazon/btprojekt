@@ -21,7 +21,7 @@ abstract class Kunde {
 
 	public static void kundenErstellen() {
 		int id = 0;
-		String[] kundenname = { "Cheap", "GÃ¼nstig und Gut", "Mik", "Ladi",
+		String[] kundenname = { "Cheap", "Günstig und Gut", "Mik", "Ladi",
 				"H&A", "C&M", "Fliegele", "Ver & Dolce", "Sport Design" };
 		for (int i = 0; i < BT.p.size(); i++) {
 			BT.klow.add(new KundeLow(id, kundenname[id], 0, 10));
@@ -39,18 +39,18 @@ abstract class Kunde {
 
 	public static void auftraegeErstellen() {
 
-		// GÃ¼nstig Kunden
+		// Günstig Kunden
 		for (int i = 0; i < BT.klow.size(); i++) {
 			int ran = (int) (Math.random() * 10);
 			if (ran < 6) { // Kunde soll einen Auftrag erstellen
 				BT.klow.get(i).erzAuftrag();
 			}
-			if (ran > 5) { // Kunde soll zwei AuftrÃ¤ge erstellen
+			if (ran > 5) { // Kunde soll zwei Aufträge erstellen
 				if (ran < 9) {
 					for (int j = 0; j < 2; j++) {
 						BT.klow.get(i).erzAuftrag();
 					}
-				} else { // Kunde soll drei AuftrÃ¤ge erstellen
+				} else { // Kunde soll drei Aufträge erstellen
 					for (int j = 0; j < 3; j++) {
 						BT.klow.get(i).erzAuftrag();
 					}
@@ -98,7 +98,7 @@ abstract class Kunde {
 
 	public abstract void erzAuftrag();
 
-	public static void auftragsBestÃ¤tigung() {
+	public static void auftragsBestätigung() {
 		for (int i = 0; i < au.size(); i++) {
 			for (int j = 0; j < BT.p.size(); j++) {
 				if (BT.p.get(j).name.contentEquals(au.get(i).a.name)) {
@@ -112,7 +112,7 @@ abstract class Kunde {
 	
 	
 	@Override
-	public int hashCode() {		// Ãœberschreiben fÃ¼r JUnit benÃ¶tigt
+	public int hashCode() {		// Ãœberschreiben für JUnit benötigt
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
@@ -122,7 +122,7 @@ abstract class Kunde {
 		return result;
 	}
 
-	@Override					// Ãœberschreiben fÃ¼r JUnit benÃ¶tigt
+	@Override					// Ãœberschreiben für JUnit benötigt
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

@@ -38,20 +38,20 @@ public class Gebaeude {
 				prodRaum = level * 100;
 				kosten = level * 100;
 				ausbkosten = (level + 1) * 100000;
-				System.out.println("Ihr GebÃ¤ude wurde erfolgreich ausgebaut.");
+				System.out.println("Ihr Gebäude wurde erfolgreich ausgebaut.");
 			} else {
 				System.out
-						.println("Sie haben nicht genug Geld um Ihr GebÃ¤ude auszubauen.");
+						.println("Sie haben nicht genug Geld um Ihr Gebäude auszubauen.");
 			}
 		} else {
 			System.out
-					.println("Ein weiterer Ausbau Ihres GebÃ¤udes ist nicht mÃ¶glich.");
+					.println("Ein weiterer Ausbau Ihres Gebäudes ist nicht möglich.");
 		}
 	}
 
 	public void arbeitsbVerb() {
 		System.out
-				.println("MÃ¶chten Sie die Arbeitsbedingungen fÃ¼r Ihre Mitarbeiter fÃ¼r 5.000 verbessern? y/n");
+				.println("Möchten Sie die Arbeitsbedingungen für Ihre Mitarbeiter für 5.000 verbessern? y/n");
 		String a = sc.next();
 		if (a.contentEquals("y")) {
 			if (maRaum < 5) {
