@@ -29,6 +29,7 @@ public class Player {
 		this.id = id;
 		this.name = name;
 		geld = 10000;
+		rep = 50;
 	}
 
 	public int getKap() {
