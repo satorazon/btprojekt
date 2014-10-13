@@ -518,7 +518,12 @@ public class Player {
 			}
 
 		}
-
+		if (rep > 100) {
+			rep = 100;
+		}
+		if (rep < 0) {
+			rep = 0;
+		}
 	}
 
 	public void einkaufMenu() {

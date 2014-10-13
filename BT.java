@@ -19,7 +19,7 @@ public class BT {
 			System.out.println("Runde: " + runde);
 			System.out.println();
 			Collections.shuffle(p); // Spieler Reihenfolge mischen
-			Kunde.au.clear();
+			Kunde.au.clear(); //Auftragsvector der letzen Runde löschen
 			for (turn = 0; turn < p.size(); turn++) { // Phase 1:
 														// Rundeninformationen
 														// und Zufallsereignis
