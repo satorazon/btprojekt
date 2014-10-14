@@ -97,17 +97,6 @@ abstract class Kunde {
 	}
 
 	public abstract void erzAuftrag();
-
-	public static void auftragsBestätigung() {
-		for (int i = 0; i < au.size(); i++) {
-			for (int j = 0; j < BT.p.size(); j++) {
-				if (BT.p.get(j).name.contentEquals(au.get(i).a.name)) {
-					BT.p.get(BT.turn).todo.add(au.get(i));
-				}
-			}
-		}
-
-	}
 	
 	
 	
