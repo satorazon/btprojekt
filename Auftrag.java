@@ -28,7 +28,7 @@ public class Auftrag {
 		this.geld = geld;
 		this.ep = ep;
 		this.marke = marke;
-		a = new Angebot("nobody", 999999999999.99);
+		a = new Angebot("nobody", geld);
 	}
 
 	// public void angebot(int auid, String name, double ang){
