@@ -83,11 +83,16 @@ public class Player {
 									// -->
 									// gutes Ereignis
 				int k = 0;
-				int ran = (int) (Math.random() * 3);
+				int ran = (int) ((Math.random() * 3)+1);
 				ze = new Zufallsereignis(k, ran);
 			}
 		}
 		System.out.println(ze.ereignis);
+		if (ze.gut==true) {
+			geld += ze.geld;
+			rep += ze.rep;
+			ertraege += ze.geld;
+		}
 		int input = sc.nextInt();
 		if (input == 1) { // Zahlen
 			geld -= ze.geld;
