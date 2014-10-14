@@ -3,20 +3,17 @@ import java.util.Vector;
 abstract class Kunde {
 
 	int id;
-
 	String name;
 	int minrep;
-	int minqual;
 
 	static int auid;
 
 	static Vector<Auftrag> au = new Vector<Auftrag>();
 
-	public Kunde(int id, String name, int minrep, int minqual) {
+	public Kunde(int id, String name, int minrep) {
 		this.id = id;
 		this.name = name;
 		this.minrep = minrep;
-		this.minqual = minqual;
 	}
 
 	public static void kundenErstellen() {
@@ -24,15 +21,15 @@ abstract class Kunde {
 		String[] kundenname = { "Cheap", "Günstig und Gut", "Mik", "Ladi",
 				"H&A", "C&M", "Fliegele", "Ver & Dolce", "Sport Design" };
 		for (int i = 0; i < BT.p.size(); i++) {
-			BT.klow.add(new KundeLow(id, kundenname[id], 0, 10));
+			BT.klow.add(new KundeLow(id, kundenname[id], 0));
 			id++;
 		}
 		for (int i = 0; i < ((BT.p.size() / 4) + (BT.p.size() / 2)); i++) {
-			BT.kmid.add(new KundeMid(id, kundenname[id], 30, 40));
+			BT.kmid.add(new KundeMid(id, kundenname[id], 30));
 			id++;
 		}
 		for (int i = 0; i < (BT.p.size() / 2); i++) {
-			BT.khigh.add(new KundeHigh(id, kundenname[id], 60, 80));
+			BT.khigh.add(new KundeHigh(id, kundenname[id], 60));
 			id++;
 		}
 	}
@@ -105,7 +102,6 @@ abstract class Kunde {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + minqual;
 		result = prime * result + minrep;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -121,8 +117,6 @@ abstract class Kunde {
 			return false;
 		Kunde other = (Kunde) obj;
 		if (id != other.id)
-			return false;
-		if (minqual != other.minqual)
 			return false;
 		if (minrep != other.minrep)
 			return false;

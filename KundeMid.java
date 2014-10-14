@@ -1,7 +1,7 @@
 class KundeMid extends Kunde {
 
-	public KundeMid(int id, String name, int minrep, int minqual) {
-		super(id, name, minrep, minqual);
+	public KundeMid(int id, String name, int minrep) {
+		super(id, name, minrep);
 	}
 
 	public void erzAuftrag() {

@@ -75,7 +75,7 @@ public class Player {
 		if (random > calcrep) { // wenn Random größer als Rep --> schlechtes
 								// Ereignis
 			int k = 1; // 1 = schlechtes Ereignis
-			int ran = (int) ((Math.random() * 5)+1);
+			int ran = (int) ((Math.random() * 5) + 1);
 			ze = new Zufallsereignis(k, ran);
 		}
 		if (rep > 5) {
@@ -83,12 +83,12 @@ public class Player {
 									// -->
 									// gutes Ereignis
 				int k = 0;
-				int ran = (int) ((Math.random() * 3)+1);
+				int ran = (int) ((Math.random() * 3) + 1);
 				ze = new Zufallsereignis(k, ran);
 			}
 		}
 		System.out.println(ze.ereignis);
-		if (ze.gut==true) {
+		if (ze.gut == true) {
 			geld += ze.geld;
 			rep += ze.rep;
 			ertraege += ze.geld;
@@ -145,8 +145,8 @@ public class Player {
 						+ "-20EP");
 				gesstrafe += (failed.get(i).geld * 0.25);
 			}
-			System.out.println("Gesamt: \t\t\t\t-" + d.format(gesstrafe) + "$ \t\t"
-					+ (-20 * failed.size()) + "EP");
+			System.out.println("Gesamt: \t\t\t\t-" + d.format(gesstrafe)
+					+ "$ \t\t" + (-20 * failed.size()) + "EP");
 			System.out.println("------------------------------");
 			System.out.println("Rohstoffbestand: ");
 			System.out.println("Günstiges Material: " + material.mlow
@@ -268,7 +268,8 @@ public class Player {
 				}
 			}
 			System.out.println("Wählen Sie eines der Angebote: ");
-			System.out.println("Drücken Sie " + (legalau.size() + 1) + ", wenn Sie kein Angebot machen möchten oder können.");
+			System.out.println("Drücken Sie " + (legalau.size() + 1)
+					+ ", wenn Sie kein Angebot machen möchten oder können.");
 			int wahl = sc.nextInt() - 1;
 			if (wahl >= legalau.size()) {
 				weiter = false;
@@ -356,14 +357,22 @@ public class Player {
 					if (m <= BT.materialmarkt.mlow) {
 						double kosten = BT.materialmarkt.pmlow * m;
 						if (kosten < geld) {
-							System.out.println(m + " Einheiten für "
-									+ d.format(kosten) + "$" + " kaufen? y/n");
-							if (sc.next().contentEquals("y")) {
-								geld -= kosten;
-								matkosten += kosten;
-								BT.materialmarkt.mlow -= m;
-								material.mlow += m;
-								System.out.println("Erfolgreich!");
+							if (m + material.mlow < geb.lagerRaum) {
+
+								System.out.println(m + " Einheiten für "
+										+ d.format(kosten) + "$"
+										+ " kaufen? y/n");
+								if (sc.next().contentEquals("y")) {
+									geld -= kosten;
+									matkosten += kosten;
+									BT.materialmarkt.mlow -= m;
+									material.mlow += m;
+									geb.lagerRaum -= m;
+									System.out.println("Erfolgreich!");
+								}
+							} else {
+								System.out
+										.println("Sie haben nicht genug Lagerraum");
 							}
 						} else {
 							System.out.println("Sie haben nicht genug Geld");
@@ -376,14 +385,21 @@ public class Player {
 					if (m <= BT.materialmarkt.mmid) {
 						double kosten = BT.materialmarkt.pmmid * m;
 						if (kosten < geld) {
-							System.out.println(m + " Einheiten für "
-									+ d.format(kosten) + "$" + " kaufen? y/n");
-							if (sc.next().contentEquals("y")) {
-								geld -= kosten;
-								matkosten += kosten;
-								BT.materialmarkt.mmid -= m;
-								material.mmid += m;
-								System.out.println("Erfolgreich!");
+							if (m + material.mmid < geb.lagerRaum) {
+								System.out.println(m + " Einheiten für "
+										+ d.format(kosten) + "$"
+										+ " kaufen? y/n");
+								if (sc.next().contentEquals("y")) {
+									geld -= kosten;
+									matkosten += kosten;
+									BT.materialmarkt.mmid -= m;
+									material.mmid += m;
+									geb.lagerRaum -= m;
+									System.out.println("Erfolgreich!");
+								}
+							} else {
+								System.out
+										.println("Sie haben nicht genug Lagerraum");
 							}
 						} else {
 							System.out.println("Sie haben nicht genug Geld");
@@ -396,17 +412,25 @@ public class Player {
 					if (m <= BT.materialmarkt.mhigh) {
 						double kosten = BT.materialmarkt.pmhigh * m;
 						if (kosten < geld) {
-							System.out.println(m + " Einheiten für "
-									+ d.format(kosten) + "$" + " kaufen? y/n");
-							if (sc.next().contentEquals("y")) {
-								geld -= kosten;
-								matkosten += kosten;
-								BT.materialmarkt.mhigh -= m;
-								material.mhigh += m;
-								System.out.println("Erfolgreich!");
+							if (m + material.mhigh < geb.lagerRaum) {
+								System.out.println(m + " Einheiten für "
+										+ d.format(kosten) + "$"
+										+ " kaufen? y/n");
+								if (sc.next().contentEquals("y")) {
+									geld -= kosten;
+									matkosten += kosten;
+									BT.materialmarkt.mhigh -= m;
+									material.mhigh += m;
+									geb.lagerRaum = -m;
+									System.out.println("Erfolgreich!");
+								}
+							} else {
+								System.out
+										.println("Sie haben nicht genug Geld");
 							}
 						} else {
-							System.out.println("Sie haben nicht genug Geld");
+							System.out
+									.println("Sie haben nicht genug Lagerraum");
 						}
 					} else {
 						System.out.println("Diese Menge ist nicht verfügbar");
