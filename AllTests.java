@@ -6,12 +6,16 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 
 @SuiteClasses({ GebaeudeTest.class, 
-				KundeHighTest.class, 
+				KundeTest.class, 
+				KundeTestPMock.class,
 				PlayerTest.class,
+				PlayerTestPMock.class,
 				MaschinenparkTest.class, 
-				MitarbeiterschaftTest.class
+				MitarbeiterschaftTest.class,
+				MaterialTestPMock.class
 				})
 
 public class AllTests {
 
 }
+
