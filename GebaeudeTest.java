@@ -1,8 +1,9 @@
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -12,7 +13,6 @@ public class GebaeudeTest {
 	public void setUp() throws Exception {
 		
 		BT.p.add(new Player(1, "Hugo"));
-	
 	}
 	
 	@After
@@ -53,11 +53,16 @@ public class GebaeudeTest {
 	}
 
 	
-	
 	@Test
-	@Ignore
-	public void testArbeitsbVerb() { 					// Problem Benutzereingabe
-		fail("Not yet implemented");
+	public void testArbeitsbVerb() { 					
+
+		BT.p.get(0).geb.sc = new Scanner("y");			// Festlegen Benutzereingabe
+		
+		BT.p.get(0).geb.arbeitsbVerb();					// maRaum=1, geld=10000, prodRaum=100, anzal=5, maZulage=0, rep=50
+
+		assertEquals(2, BT.p.get(0).geb.maRaum);
+		assertEquals(100, BT.p.get(0).geb.maZulage);
+		assertEquals(70, BT.p.get(0).rep);
 	}
 
 }
