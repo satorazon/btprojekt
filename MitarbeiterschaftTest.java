@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -51,11 +53,17 @@ public class MitarbeiterschaftTest {
 	}
 
 	
-	
 	@Test
-	@Ignore
-	public void testVergrößern() { 						// Problem Benutzereingabe
-		fail("Not yet implemented");
+	public void testVergrößern() { 					
+		
+		String s = "2;y";								// simulierte Benutzereingaben
+		BT.p.get(0).geb.ma.sc = new Scanner(s).useDelimiter(";");
+		
+		BT.p.get(0).geb.ma.vergrößern();
+		
+		assertEquals(8000, BT.p.get(0).geld, 1e-4);
+		assertEquals(98, BT.p.get(0).geb.prodRaum);
+		assertEquals(7, BT.p.get(0).geb.ma.anzahl);
 	}
 
 }
