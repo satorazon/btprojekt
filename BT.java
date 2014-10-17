@@ -14,12 +14,12 @@ public class BT {
 	public static void main(String[] args) {
 		Player.erstellen();
 		Kunde.kundenErstellen();
-		while (true) {
+		while (runde < 10) {
 			runde++;
 			System.out.println("Runde: " + runde);
 			System.out.println();
 			Collections.shuffle(p); // Spieler Reihenfolge mischen
-			Kunde.au.clear(); //Auftragsvector der letzen Runde löschen
+			Kunde.au.clear(); //Auftragsvector der letzen Runde lÃ¶schen
 			for (turn = 0; turn < p.size(); turn++) { // Phase 1:
 														// Rundeninformationen
 														// und Zufallsereignis
@@ -34,8 +34,8 @@ public class BT {
 				}
 			}
 			Kunde.auftraegeErstellen();
-			for (turn = 0; turn < p.size(); turn++) { // Phase 2: Angebote für
-														// Auftäge abgeben
+			for (turn = 0; turn < p.size(); turn++) { // Phase 2: Angebote fÃ¼r
+														// AuftÃ¤ge abgeben
 				System.out.println();
 				System.out.println(p.get(turn).name + " ist an der Reihe");
 				System.out.println();
@@ -52,7 +52,7 @@ public class BT {
 				p.get(turn).einkaufMenu();
 			}
 			for (turn = 0; turn < p.size(); turn++) { // Phase 4: Investitionen
-														// tätigen und Aufträge
+														// tÃ¤tigen und AuftrÃ¤ge
 														// bearbeiten
 				System.out.println(p.get(turn).name + " ist an der Reihe");
 				System.out.println();
