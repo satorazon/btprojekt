@@ -47,17 +47,5 @@ public class KundeTestPMock {
 		verify(k3, times(1)).erzAuftrag();
 		verify(k4, times(1)).erzAuftrag();
 	}
-	
-	
-	@Test
-	@Ignore
-	public void testErzAuftrag() {	
-		
-		KundeHigh k = new KundeHigh(1, "Sport Design", 60);
-	
-		k.erzAuftrag(); 
-
-		assertEquals(1, Kunde.auid);
-	}
 
 }
