@@ -35,21 +35,21 @@ public class Mitarbeiterschaft {
 		skosten = (level + 1) * 10000;
 	}
 
-	public void vergrößern() {
+	public void vergrÃ¶ÃŸern() {
 		System.out
-				.println("Wieviele Mitarbeiter möchten Sie einstellen? 1 MA = 1.000");
+				.println("Wieviele Mitarbeiter mÃ¶chten Sie einstellen? 1 MA = 1.000");
 		int anz = sc.nextInt();
 		if (BT.p.get(BT.turn).geld > (anz * 1000)) {
 			if (BT.p.get(BT.turn).geb.prodRaum > (anz * BT.p.get(BT.turn).geb.maRaum)) {
-				System.out.println("Möchten Sie " + anz + " Mitarbeiter für "
+				System.out.println("MÃ¶chten Sie " + anz + " Mitarbeiter fÃ¼r "
 						+ (anz * 1000) + " einstellen?");
-				System.out.println("Die Mitarbeiter benötigen "
+				System.out.println("Die Mitarbeiter benÃ¶tigen "
 						+ (anz * BT.p.get(BT.turn).geb.maRaum)
 						+ " Raum-Einheiten.");
 				System.out.println("y/n");
 				String a = sc.next();
 				if (a.contentEquals("y")) {
-					BT.p.get(BT.turn).geld -= anz * 5000;
+					BT.p.get(BT.turn).geld -= anz * 1000;
 					BT.p.get(BT.turn).geb.prodRaum -= anz
 							* BT.p.get(BT.turn).geb.maRaum;
 					BT.p.get(BT.turn).geb.ma.anzahl += anz;
