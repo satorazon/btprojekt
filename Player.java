@@ -582,6 +582,7 @@ public class Player {
 			if (sc.next().contains("y")) {
 				marke = true;
 				geld -= 200000;
+				ep += 100;
 			} else {
 				System.out.println("Vorgang abgebrochen");
 			}
