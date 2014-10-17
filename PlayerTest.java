@@ -305,6 +305,8 @@ public class PlayerTest {
 		
 		assertTrue(true == BT.p.get(0).marke);
 		assertEquals(100000, BT.p.get(0).geld, 1e-4);
+		assertEquals(100, BT.p.get(0).ep);
+
 	}
 
 
