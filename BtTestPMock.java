@@ -28,7 +28,7 @@ public class BtTestPMock {
 		BT.materialmarkt = m;
 		
 		
-		BT.main(null);
+		BT.main(null); 
 
 		
 		// Verifizieren der statischen Methodenaufrufe
