@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
-
+ 
 
 public class KundeTest {
 
