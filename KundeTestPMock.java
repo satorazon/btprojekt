@@ -30,7 +30,7 @@ public class KundeTestPMock {
 	
 	@Test
 	public void testAuftraegeErstellen() {			
-		
+		 
 		KundeLow k1 = mock(KundeLow.class);
 		BT.klow.add(k1);
 		KundeLow k2 = mock(KundeLow.class);
