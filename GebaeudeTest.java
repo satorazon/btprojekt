@@ -28,7 +28,7 @@ public class GebaeudeTest {
 		
 		BT.p.get(0).geld = 500000;						// ausbkosten=200000, level=1, turn=0
 		
-		BT.p.get(0).geb.ausbauen();			
+		BT.p.get(0).geb.ausbauen(); 			
 		
 		assertEquals(2, BT.p.get(0).geb.level);			// Levelerhöhung
 		assertEquals(300000, BT.p.get(0).geld, 1e-4); 	// Kontostandreduzierung
