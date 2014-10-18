@@ -27,7 +27,7 @@ public class PlayerTestPMock {
 	}
 	
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() throws Exception { 
 		
 		BT.p.clear();
 	}
