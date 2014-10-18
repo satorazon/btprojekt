@@ -145,12 +145,6 @@ public class PlayerTest {
 
 
 	@Test
-	@Ignore
-	public void testQuartalsBericht() {		// kein Test, da nur Konsolenausgaben und lokale Variablen 
-		fail("Not yet implemented");
-	}
-	
-	@Test
 	public void testAuBeschaffen_ohneMarke() { 		
 
 		Auftrag auf1 = new Auftrag("A", 1, 10, 8, 40, 1, 4000, 5, false); 	// wird angeboten
@@ -196,11 +190,6 @@ public class PlayerTest {
 		Kunde.au.clear();
 	}
 
-	@Test
-	@Ignore
-	public void testAuftragInfo() { 		// kein Test, da ausschließlich Konsolenausgabe
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testMaterialBeschaffen_low() {	
@@ -276,9 +265,10 @@ public class PlayerTest {
 		verify(BT.p.get(0).geb).ausbauen();
 	}
 	
+	
 	@Test
 	public void testEinkaufMenu() {		
-		
+
 		String s = "2;1;3";					// simulierte Benutzereingaben
 		
 		Player spy = spy(BT.p.get(0));			// Spion auf Player-Objekt
@@ -290,6 +280,7 @@ public class PlayerTest {
 		
 		verify(spy).auftragInfo();
 		verify(spy).materialBeschaffen();
+		
 	}
 
 	
@@ -306,9 +297,30 @@ public class PlayerTest {
 		assertTrue(true == BT.p.get(0).marke);
 		assertEquals(100000, BT.p.get(0).geld, 1e-4);
 		assertEquals(100, BT.p.get(0).ep);
-
 	}
+	
+	
+	@Test
+	public void testQuartalsBericht() {
+		
+		BT.runde = 2;
+		
+		Player spy = spy(BT.p.get(0));				// Spion auf Player-Objekt
+		doReturn(0.0).when(spy).kostenErmitteln();	// Mocking von Player-Methode
+		spy.geb.ma = mock(Mitarbeiterschaft.class);
+		spy.geb.mp = mock(Maschinenpark.class);
+		
+		spy.quartalsBericht();
+		
+		verify(spy, times(2)).kostenErmitteln();
+		verify(spy.geb.ma).kostenErmitteln();
+		verify(spy.geb.mp, times(1)).kostenErmitteln();
+	}
+	
 
-
-
+	@Test
+	@Ignore
+	public void testAuftragInfo() { 		// kein Test, da ausschließlich Konsolenausgaben (keine Attributwerte oder Methodenaufrufe zu prüfen)
+		fail("Not yet implemented");
+	}
 }
