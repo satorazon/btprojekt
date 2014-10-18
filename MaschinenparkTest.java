@@ -32,7 +32,7 @@ public class MaschinenparkTest {
 
 	
 	@Test
-	public void testUpgraden_positiv() { 				// Kontostand > Kosten
+	public void testUpgraden_positiv() { 				// Kontostand > Kosten 
 		
 		BT.p.get(0).geld = 50000;					
 
