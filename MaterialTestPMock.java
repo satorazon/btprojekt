@@ -28,7 +28,7 @@ public class MaterialTestPMock {
 	
 	@Test
 	public void testErstellen() {
-		
+		 
 		PowerMock.mockStatic(Math.class);							// Manipulieren der random-Funktion
 		EasyMock.expect(Math.random()).andReturn(0.60).anyTimes();
 		PowerMock.replay(Math.class);
