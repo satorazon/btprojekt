@@ -75,7 +75,7 @@ public class Player {
 		if (random > calcrep) { // wenn Random größer als Rep --> schlechtes
 								// Ereignis
 			int k = 1; // 1 = schlechtes Ereignis
-			int ran = (int) ((Math.random() * 5) + 1);
+			int ran = 1; //(int) ((Math.random() * 5) + 1);
 			ze = new Zufallsereignis(k, ran);
 		}
 		if (rep > 5) {
