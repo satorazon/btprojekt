@@ -87,7 +87,7 @@ public class Player {
 				ze = new Zufallsereignis(k, ran);
 			}
 		}
-		if (ze.ereignis != null) {
+		if (ze != null) {
 			System.out.println(ze.ereignis);
 			if (ze.gut == true) {
 				geld += ze.geld;
