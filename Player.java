@@ -7,11 +7,11 @@ public class Player {
 	int id;
 	String name;
 	String mname;
-	int rep;			// Reputationspunkte
+	int rep; // Reputationspunkte
 	double geld;
-	int ep;				// Erfahrungspunkte
+	int ep; // Erfahrungspunkte
 	boolean marke;
-	boolean sgv; 		// Schmiergeld verwendet
+	boolean sgv; // Schmiergeld verwendet
 	double matkosten;
 	double zufallkosten;
 	double ertraege;
@@ -48,7 +48,7 @@ public class Player {
 			BT.p.add(new Player(id, name)); // Spieler zur Liste hinzufügen
 			System.out
 					.println("Willkommen "
-							+ name 
+							+ name
 							+ ", Sie erhalten eine kleine Textilfabrik und 10.000$ Startkapital");
 			if (id >= 2) { // Mindestens 2 Spieler
 				System.out
@@ -82,39 +82,41 @@ public class Player {
 			if (random == rep) { // wenn Random gleich Rep aber größer als 5
 									// -->
 									// gutes Ereignis
-				int k = 0;
-				int ran = (int) ((Math.random() * 3) + 1);
+				int k = 1; // 0;
+				int ran = 1; // (int) ((Math.random() * 3) + 1);
 				ze = new Zufallsereignis(k, ran);
 			}
 		}
-		System.out.println(ze.ereignis);
-		if (ze.gut == true) {
-			geld += ze.geld;
-			rep += ze.rep;
-			ertraege += ze.geld;
-		} 
-		int input = sc.nextInt();
-		if (input == 1) { // Zahlen
-			geld -= ze.geld;
-			zufallkosten += ze.geld;
-			rep += 10;
-		} else if (input == 3) { // Schmiergeldversuch
-			System.out.println("Wieviel Schmiergeld wollen Sie zahlen?");
-			System.out
-					.println("Denken Sie daran: ein höherer Betrag erhöht Ihre Erfolgschancen.");
-			ze.sgeld = sc.nextDouble();
-			double a = ze.geld * 0.75;
-			double ran = Math.random() * a;
-			if (ran > ze.sgeld) {
-				System.out.println("Sie sind aufgeflogen!");
-				System.out.println("Sie verlieren " + ze.rep
-						+ " Reputationspunkte.");
+		if (ze.ereignis != null) {
+			System.out.println(ze.ereignis);
+			if (ze.gut == true) {
+				geld += ze.geld;
+				rep += ze.rep;
+				ertraege += ze.geld;
+			}
+			int input = sc.nextInt();
+			if (input == 1) { // Zahlen
+				geld -= ze.geld;
+				zufallkosten += ze.geld;
+				rep += 10;
+			} else if (input == 3) { // Schmiergeldversuch
+				System.out.println("Wieviel Schmiergeld wollen Sie zahlen?");
+				System.out
+						.println("Denken Sie daran: ein höherer Betrag erhöht Ihre Erfolgschancen.");
+				ze.sgeld = sc.nextDouble();
+				double a = ze.geld * 0.75;
+				double ran = Math.random() * a;
+				if (ran > ze.sgeld) {
+					System.out.println("Sie sind aufgeflogen!");
+					System.out.println("Sie verlieren " + ze.rep
+							+ " Reputationspunkte.");
+					rep -= ze.rep;
+				}
+				geld -= ze.sgeld;
+				zufallkosten += ze.sgeld;
+			} else { // Ignorieren
 				rep -= ze.rep;
 			}
-			geld -= ze.sgeld;
-			zufallkosten += ze.sgeld;
-		} else { // Ignorieren
-			rep -= ze.rep;
 		}
 	}
 
@@ -209,7 +211,7 @@ public class Player {
 							if (getKap() >= Kunde.au.get(i).kap) { // Prüfung
 																	// auf Kap
 								legalau.add(i);
-								j++; 
+								j++;
 								System.out.println("(" + j + ".) Kunde: "
 										+ Kunde.au.get(i).name);
 								System.out.println("Höchstpreis: "
@@ -305,7 +307,7 @@ public class Player {
 		System.out.println("Sie haben folgende Aufträge erhalten: ");
 		System.out.println();
 		for (int i = 0; i < todo.size(); i++) {
-			System.out.println("Kunde: " + todo.get(i).name); 
+			System.out.println("Kunde: " + todo.get(i).name);
 			System.out.println();
 			if (todo.get(i).marke == false) {
 				System.out.println("Marken-Auftrag: nein");
@@ -429,8 +431,7 @@ public class Player {
 										.println("Sie haben nicht genug Lagerraum");
 							}
 						} else {
-							System.out
-									.println("Sie haben nicht genug Geld");
+							System.out.println("Sie haben nicht genug Geld");
 						}
 					} else {
 						System.out.println("Diese Menge ist nicht verfügbar");
@@ -445,7 +446,7 @@ public class Player {
 	}
 
 	public void investMenu() {
-		boolean weiter = true; 
+		boolean weiter = true;
 		while (weiter == true) {
 			System.out.println("Was möchten Sie tun?");
 			System.out.println();
@@ -612,7 +613,7 @@ public class Player {
 	}
 
 	@Override
-	public int hashCode() {			// JUnit Test
+	public int hashCode() { // JUnit Test
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
@@ -641,7 +642,7 @@ public class Player {
 	}
 
 	@Override
-	public boolean equals(Object obj) {		// Junit Test
+	public boolean equals(Object obj) { // Junit Test
 		if (this == obj)
 			return true;
 		if (obj == null)
